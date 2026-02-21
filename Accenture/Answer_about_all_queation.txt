@@ -1,0 +1,139 @@
+🟢 Real-Time Communication Systems:- 
+                                    WebRTC – Peer-to-peer audio/video/data communication mechanism for real-time apps.
+                                    WebSocket – Full-duplex transport protocol enabling low-latency bidirectional communication.
+                                    Long Polling – Fallback real-time mechanism simulating server push over HTTP.
+                                    Server-Sent Events (SSE) – One-way server-to-client streaming for real-time updates.
+                                    Message Brokers (Kafka, RabbitMQ, Redis Pub/Sub) – Real-time backend messaging and event streaming systems.
+                                    gRPC Streaming – Real-time streaming over HTTP/2 with strong typing.
+                                    HTTP/2 Streaming – Transport layer streaming protocol for continuous data delivery.
+                                    GraphQL Subscriptions – Real-time backend updates via WebSocket and GraphQL queries.
+                                    MQTT – Lightweight publish/subscribe protocol for IoT and low-latency systems.
+                                    Signaling Mechanisms – Coordination layer for establishing real-time connections.
+                                    ICE / STUN / TURN – NAT traversal and peer connectivity mechanisms in WebRTC.
+                                    Low-Latency Optimization – Techniques to reduce delay in real-time systems.
+                                    Backpressure Handling – Managing load in high-throughput streaming applications.
+                                    Load Balancing (Real-Time Services) – Distributing WebSocket/gRPC traffic efficiently.
+                                    Pub/Sub Patterns – Event-driven communication design pattern for decoupled systems.
+
+🟢 Backend APIs & Architecture
+                                HTTP – Transport layer protocol for client-server communication.
+                                HTTPS – Secure HTTP using TLS/SSL.
+                                REST API – API style using HTTP verbs for CRUD operations.
+                                GraphQL – API query language allowing flexible client-driven data fetching.
+                                XML API – API using XML payloads for structured communication.
+                                SOAP API – Protocol-based XML messaging for enterprise APIs.
+                                gRPC – High-performance RPC framework over HTTP/2 with protocol buffers.
+                                WebSocket API – API over WebSocket for real-time bidirectional communication.
+                                Webhook (Event-Driven API) – Server-triggered HTTP callbacks on events.
+                                RPC – Remote Procedure Call API for invoking server methods.
+                                Microservices Architecture – Modular backend design for scalable, maintainable services.
+                                Async / High-Performance Backend – Using FastAPI or asyncio for concurrent tasks.
+                                Database Integration – SQL/NoSQL databases for persistent storage.
+                                Caching / In-Memory Storage – Redis/Memcached for fast response times.
+                                Message Queues – RabbitMQ/Kafka for decoupled asynchronous processing.
+                                Rate Limiting / Throttling – Protecting APIs from overuse.
+                                Authentication / Authorization – JWT, OAuth2, API Keys for security.
+                                Logging / Monitoring / Metrics – Tracking performance and system health.
+                                Feature Flags / Canary Releases – Controlled deployment of new features.
+
+🟢 Frontend Applications: -
+                        HTML – Standard markup language for page structure.
+                        CSS – Styling and layout of web pages.
+                        React.js – Library for building component-based UIs.
+                        DOM – Browser object model representing page elements.
+                        Redux – Centralized state management for React apps.
+                        React Context API – Global state management without Redux.
+                        React Router – Client-side routing library for React apps.
+                        Axios – HTTP client for API requests in JavaScript.
+                        WebSocket – Frontend integration for real-time updates.
+                        Babel – JavaScript compiler for ES6+ compatibility.
+                        ESLint – Linting tool for code quality.
+                        SSR (Server-Side Rendering) – Rendering pages on server before sending to client.
+                        CSR (Client-Side Rendering) – Rendering pages dynamically in the browser.
+                        SSG (Static Site Generation) – Pre-rendered pages for performance.
+                        Hydration – Linking pre-rendered HTML to client-side JavaScript.
+                        Code Splitting – Breaking JS bundles for faster load times.
+                        Lazy Loading – Loading components only when needed.
+                        Performance Optimization – Speed and responsiveness improvements.
+                        Virtual DOM – In-memory representation of UI for efficient updates.
+                        Reconciliation – React’s diffing algorithm to update the DOM.
+                        Memoization – Caching computation results to avoid unnecessary work.
+                        Accessibility (a11y) – Making apps usable for all users.
+                        SEO Optimization – Ensuring content is discoverable by search engines.
+                        Web Security (XSS, CSRF) – Preventing common frontend attacks.
+                        Web Performance (LCP, FCP, CLS) – Metrics for page speed and UX.
+                        Tree Shaking – Removing unused code from JS bundles.
+                        TypeScript – Strongly-typed superset of JavaScript for scalability.
+                        Component Libraries – Pre-built UI components (Material-UI, Ant Design).
+                        Progressive Web Apps (PWA) – Offline-capable, installable web apps.
+
+🟢 Telephony:- 
+                Twilio – Cloud platform for programmable voice, messaging, video.
+                Genesys – Enterprise-grade contact center and CX platform.
+                Amazon Connect – Cloud-based contact center service with telephony.
+                Five9 – Cloud contact center solution for call management.
+                Vonage – CPaaS platform for voice, messaging, and video APIs.
+                Cisco / Avaya / NICE – Enterprise telephony and contact center systems.
+                IVR Integration – Interactive voice response systems for call routing.
+                Call Event Handling – Processing and responding to telephony events.
+                Telephony Workflows – End-to-end automated call handling processes.
+                SIP / RTP / VoIP Protocols – Telephony protocols for voice transmission.
+
+🟢 FastAPI
+            Modern – High-performance Python web framework with type hints.
+            Async Handling API – Supports async/await for concurrency.
+            Lightweight Core – Minimalistic, fast API framework.
+            Type Hints – Modern Python typing for clarity and validation.
+            Easy API Creation – Intuitive syntax for REST or WebSocket APIs.
+            Data Validation – Automatic request, query, path validation via Pydantic.
+            Auto API Docs – Swagger UI and ReDoc generated automatically.
+            OpenAPI Standard – API schemas compatible with tools and clients.
+            Starlette (ASGI) – Async server interface; not WSGI-based.
+            Pydantic – Type-safe validation, conversion, and error handling.
+            Dependency Injection – Structured, testable service design.
+            Background Tasks / Celery – Async processing for long-running tasks.
+
+🟢 Python
+            Modern Language – High-level, readable, widely-used.
+            Interpreted & Dynamically Typed – Runtime type inference; no compilation.
+            Supports Multiple Paradigms – Procedural, OOP, functional programming.
+            GIL (Global Interpreter Lock) – Single thread executes bytecode; affects CPU-bound tasks.
+            Generators – Memory-efficient iteration using yield.
+            Decorators – Functions that modify other functions using @decorator.
+            Context Managers – with statement to manage resources safely.
+            Type Hints (PEP 484) – Optional annotations for readability and static checks.
+            Async Support – async/await and asyncio for concurrent I/O.
+            Exception Handling – try/except/finally with custom exceptions.
+            Iterators / Iterables – __iter__/__next__() for looping custom objects.
+            Memory Management – Reference counting and garbage collection.
+            Modules & Packages – Reusable code and Python standard library.
+            Data Structures – Lists, tuples, sets, dicts, comprehensions.
+            Metaclasses – Class creation customization via type.
+            Descriptors – __get__/__set__/__delete__ for property control.
+            Dataclasses – @dataclass for boilerplate-free classes.
+            Decorators with Arguments – Advanced function wrapping.
+            C Extensions / Cython – Performance optimization for critical code.
+            Packaging & Distribution – pip, Poetry, virtual environments.
+            Profiling & Optimization – cProfile, memory profiling, performance tuning.
+            Async ORMs – Tortoise ORM, SQLAlchemy async for database operations.
+            Unit Testing / Pytest – Writing reliable and testable Python code.
+
+🟢 DevOps
+        Docker – Containerization for consistent app environments.
+        Kubernetes – Orchestration for scaling containerized apps.
+        Cloud Deployment (AWS/Azure/GCP) – Hosting and scaling apps in cloud.
+        CI/CD Pipelines – Automated build, test, and deployment.
+        Scalable Applications – Design apps to handle growth and traffic
+        Monitoring & Logging – Track performance and detect errors.
+        Infrastructure as Code (IaC) – Terraform/CloudFormation for reproducible setups.
+        Serverless Functions – Event-driven compute via AWS Lambda/Azure Functions.
+        Autoscaling / Horizontal Scaling – Dynamic scaling of services.
+        Secrets Management – Safely storing credentials (Vault, Secrets Manager).
+        CDN Integration – Fast content delivery (CloudFront, Akamai).
+
+🟢 AI
+    Voice AI / Conversational AI / GenAI / LLM – AI-powered voice/chat systems.
+    Edge Computing – Processing closer to the user for low-latency apps.
+    Event-Driven Architecture – Systems reacting to asynchronous events.
+    GraphQL Federation / Apollo Subscriptions – Advanced real-time GraphQL setups.
+    Real-Time Streaming Systems – High-throughput, low-latency streaming applications.

@@ -1,0 +1,586 @@
+🐍 PYTHON INTERVIEW — BASIC → ADVANCED
+1️⃣ What is Python?
+**Answer:**  
+Python is a high-level, interpreted, dynamically typed programming language known for readability and rapid development.
+
+**Keywords:**  
+- Interpreted  
+- Dynamically typed  
+- Cross-platform  
+
+---
+
+2️⃣ Python vs Java
+| Feature | Python | Java |
+|--------|--------|------|
+| Typing | Dynamic | Static |
+| Speed | Slower | Faster |
+| Syntax | Simple | Verbose |
+| Use | AI, Backend | Enterprise |
+
+---
+
+3️⃣ List vs Tuple
+| Feature | List | Tuple |
+|--------|------|------|
+| Mutable | ✅ Yes | ❌ No |
+| Speed | Slower | Faster |
+| Use | Dynamic data | Fixed data |
+
+---
+
+4️⃣ Dict vs Set
+- **Dict** → key-value pairs  
+- **Set** → unique values only  
+
+---
+
+5️⃣ is vs ==
+- `==` → value comparison  
+- `is` → memory reference  
+
+```python
+a = [1]
+b = [1]
+a == b  # True
+a is b  # False
+```
+6️⃣ What is GIL?
+**GIL = Global Interpreter Lock**
+
+- Only one thread executes Python bytecode at a time  
+- Affects CPU-bound tasks  
+- Not a problem for I/O tasks  
+
+👉 Use multiprocessing for CPU-heavy work.
+
+7️⃣ Deep Copy vs Shallow Copy
+```python
+import copy
+
+copy.copy()      # shallow
+copy.deepcopy()  # deep
+```
+
+- Shallow → copies reference  
+- Deep → copies full object  
+
+---
+
+8️⃣ Generators
+Functions that yield values lazily.
+
+```python
+def gen():
+    yield 1
+    yield 2
+```
+
+**Benefits:**
+- Memory efficient  
+- Streaming  
+
+---
+
+9️⃣ Decorators
+Modify function behavior.
+
+```python
+def log(func):
+    def wrapper():
+        print("start")
+        func()
+    return wrapper
+```
+
+Used in:
+- Logging  
+- Auth  
+- FastAPI routes  
+
+---
+
+🔟 Lambda Functions
+```python
+lambda x: x*x
+```
+Anonymous inline functions.
+
+---
+
+🔵 ADVANCED PYTHON
+
+---
+
+1️⃣1️⃣ Async vs Threading
+| Feature | Async | Thread |
+|--------|------|------|
+| Model | Event loop | OS threads |
+| Use | I/O bound | Parallel work |
+| Perf | Lightweight | Heavy |
+
+---
+
+1️⃣2️⃣ Async IO Example
+```python
+import asyncio
+
+async def main():
+    await asyncio.sleep(1)
+
+asyncio.run(main())
+```
+
+---
+
+1️⃣3️⃣ Multiprocessing vs Multithreading
+| Type | Use |
+|------|-----|
+| Multiprocessing | CPU bound |
+| Multithreading | I/O bound |
+
+---
+
+1️⃣4️⃣ Context Managers
+```python
+with open("file.txt") as f:
+    data = f.read()
+```
+
+Handles:
+- File closing  
+- Cleanup  
+
+---
+
+1️⃣5️⃣ Metaclasses (Advanced)
+Classes that create classes.
+
+Used in:
+- ORMs  
+- Frameworks  
+
+---
+
+comprehensions 
+    short, clean ways to create collections (list, set, dict).
+    example :-
+    [expression for item in iterable]
+    List Comprehension with Condition
+    If-Else in Comprehension
+    Nested List Comprehension
+    Set Comprehension
+    Dictionary Comprehension
+
+
+
+# ⚡ FASTAPI INTERVIEW — FULL GUIDE
+
+---
+
+🟢 BASIC FASTAPI
+
+---
+
+1️⃣ What is FastAPI?
+Modern Python web framework built on:
+- Starlette (async server)
+- Pydantic (validation)
+
+**Features:**
+- Async support  
+- Auto docs  
+- High performance  
+
+---
+
+2️⃣ FastAPI vs Flask
+| Feature | FastAPI | Flask |
+|--------|--------|------|
+| Async | ✅ Yes | ❌ No |
+| Speed | Very fast | Medium |
+| Docs | Auto Swagger | Manual |
+
+---
+
+3️⃣ Simple FastAPI App
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def home():
+    return {"msg": "hello"}
+```
+
+---
+
+4️⃣ Path vs Query Params
+```python
+@app.get("/user/{id}")   # path
+def get(id: int):
+    return id
+
+@app.get("/search")
+def search(q: str):      # query
+    return q
+```
+
+---
+
+🟡 INTERMEDIATE FASTAPI
+
+---
+
+5️⃣ Request Body Validation
+```python
+from pydantic import BaseModel
+
+class User(BaseModel):
+    name: str
+    age: int
+```
+
+**Pydantic handles:**
+- Type validation  
+- Serialization  
+
+---
+
+6️⃣ Dependency Injection
+```python
+from fastapi import Depends
+
+def get_db():
+    return "db"
+
+@app.get("/")
+def home(db=Depends(get_db)):
+    return db
+```
+
+Used for:
+- Auth  
+- DB sessions  
+
+---
+
+7️⃣ Middleware
+Runs before request.
+
+```python
+@app.middleware("http")
+async def log(request, call_next):
+    return await call_next(request)
+```
+
+---
+
+8️⃣ Background Tasks
+```python
+from fastapi import BackgroundTasks
+
+def send_email():
+    pass
+
+@app.get("/")
+def home(bg: BackgroundTasks):
+    bg.add_task(send_email)
+```
+
+---
+
+9️⃣ File Upload
+```python
+from fastapi import UploadFile
+
+@app.post("/upload")
+def upload(file: UploadFile):
+    return file.filename
+```
+
+---
+
+🔵 ADVANCED FASTAPI
+
+---
+
+1️⃣0️⃣ Async vs Sync Routes
+```python
+@app.get("/sync")
+def sync():
+    pass
+
+@app.get("/async")
+async def async_route():
+    pass
+```
+
+Use async when:
+- DB calls  
+- APIs  
+- WebSockets  
+
+---
+
+1️⃣1️⃣ WebSockets in FastAPI
+🔥 Important for real-time roles
+
+```python
+from fastapi import WebSocket
+
+@app.websocket("/ws")
+async def ws(ws: WebSocket):
+    await ws.accept()
+    while True:
+        msg = await ws.receive_text()
+        await ws.send_text(msg)
+```
+
+---
+
+1️⃣2️⃣ FastAPI + WebRTC Role Question
+**Where FastAPI is used?**
+
+👉 Signaling server
+
+Handles:
+- SDP exchange  
+- ICE candidates  
+
+---
+
+1️⃣3️⃣ Lifespan Events
+```python
+@app.on_event("startup")
+async def startup():
+    print("started")
+```
+
+Used for:
+- DB connect  
+- Cache warmup  
+
+---
+
+1️⃣4️⃣ Authentication
+Common methods:
+- JWT  
+- OAuth2  
+
+```python
+from fastapi.security import OAuth2PasswordBearer
+```
+
+---
+
+1️⃣5️⃣ FastAPI Performance Tips
+✅ Use:
+- uvicorn + uvloop  
+- async DB drivers  
+- Redis caching  
+- Gunicorn workers  
+
+---
+
+✅ Advantage of FastAPI
+Easy to Learn: Beginner-friendly syntax with automatic docs makes it quick to get started.
+High Performance: Built on async features, it handles many requests efficiently.
+Auto Data Validation: Uses type hints to validate input/output automatically.
+Built-in Auth: Supports JWT, OAuth2 and custom authentication easily.
+Middleware Support: Add logging, auth and more through simple middleware integration.
+✅Disadvantage of FastAPI
+Async Complexity: Requires understanding async/await, which can be tricky for beginners.
+Fewer Built-in Tools: Lacks features like Django’s admin panel, ORM or user auth.
+Smaller Ecosystem: Fewer plugins, tutorials and community support compared to older frameworks.
+Debugging Difficulty: Async debugging is harder than with traditional synchronous code.
+
+# ⚡ REAL INTERVIEW QUESTIONS (VERY COMMON)
+
+---
+
+🔥 Q1: Why FastAPI is fast?
+**Answer:**
+- ASGI based  
+- Async support  
+- Starlette + uvicorn  
+
+---
+
+🔥 Q2: FastAPI sync blocking issue?
+If using:
+- Blocking DB drivers  
+- CPU tasks  
+
+👉 Use threadpool or Celery.
+
+---
+
+🔥 Q3: How to scale FastAPI?
+- Load balancer  
+- Docker  
+- Kubernetes  
+- Horizontal scaling  
+
+---
+
+🔥 Q4: FastAPI vs NodeJS?
+**Answer:**
+- FastAPI → better for Python ecosystem  
+- Node → better real-time + JS stack  
+
+---
+
+🔥 Q5: How FastAPI handles concurrency?
+- Event loop  
+- Async await  
+- Non-blocking I/O  
+
+---
+
+# 🚀 ADVANCED QUESTIONS (MANAGER ROUND)
+
+---
+
+🧠 Design FastAPI for 1M users
+**Answer Structure:**
+1. Load balancer  
+2. API gateway  
+3. FastAPI services  
+4. Redis cache  
+5. PostgreSQL  
+6. Kafka queue  
+
+---
+
+🧠 FastAPI + WebSocket scaling
+- Sticky sessions  
+- Redis pub/sub  
+- Horizontal pods  
+
+---
+
+🧠 Rate limiting
+Use:
+- Redis sliding window  
+- Token bucket  
+
+---
+
+# 💡 CODING QUESTIONS THEY ASK
+
+---
+
+1️⃣ Two Sum
+```python
+def two_sum(nums, target):
+    d = {}
+    for i, n in enumerate(nums):
+        if target - n in d:
+            return [d[target-n], i]
+        d[n] = i
+```
+
+---
+
+2️⃣ Sliding Window Rate Limiter
+```python
+import time
+from collections import deque
+
+class RateLimiter:
+    def __init__(self, limit, window):
+        self.limit = limit
+        self.window = window
+        self.q = deque()
+
+    def allow(self):
+        now = time.time()
+        while self.q and self.q[0] < now - self.window:
+            self.q.popleft()
+        if len(self.q) < self.limit:
+            self.q.append(now)
+            return True
+        return False
+```
+
+---
+
+3️⃣ Debounce Function
+```python
+import time
+
+def debounce(wait):
+    def decorator(fn):
+        last = 0
+        def wrapper(*args):
+            nonlocal last
+            now = time.time()
+            if now - last > wait:
+                last = now
+                return fn(*args)
+        return wrapper
+    return decorator
+```
+# 🏁 LAST-MINUTE CHEAT SHEET
+
+If they ask:
+
+❓ Why FastAPI?
+👉 Async + performance + auto docs
+
+❓ Where used?
+👉 Microservices + real-time signaling
+
+❓ Async needed?
+👉 Yes for I/O heavy apps
+
+⚡ FASTAPI RAPID FIRE ANSWERS
+1️⃣ ASGI vs WSGI
+WSGI = sync only, ASGI = async + WebSockets + long-lived connections.
+FastAPI uses ASGI, so it supports real-time apps.
+
+2️⃣ Uvicorn vs Gunicorn
+Uvicorn → ASGI server (async, fast, dev-friendly)
+Gunicorn → Process manager (production, multi-workers)
+👉 Best practice: Gunicorn + Uvicorn workers in prod.
+
+3️⃣ Pydantic v1 vs v2
+v1: Pure Python, slower validation
+v2: Rust-powered core (pydantic-core), 5–50x faster, new validators
+👉 FastAPI latest versions prefer Pydantic v2
+
+4️⃣ Sync Blocking Issue
+If you run blocking code in async endpoint, it blocks event loop ❌
+Fix:
+run_in_threadpool()
+background worker (Celery)
+make function async
+
+5️⃣ WebSocket Scaling
+Single instance WebSocket = memory bound ⚠️
+Scaling strategies:
+Redis pub/sub
+Kafka/NATS
+Sticky sessions
+WebSocket gateway (NGINX)
+
+6️⃣ Background Workers
+Used for heavy or async tasks:
+Email sending
+Video processing
+WebRTC recording
+Retries
+Common tools:
+Celery + Redis/RabbitMQ
+Dramatiq
+FastAPI BackgroundTasks (small jobs only)
+
+ASGI: Async Python server interface
+Uvicorn: Fast ASGI server
+Gunicorn: Multi-process production runner
+Pydantic v2: Rust-fast validation
+Blocking bug: Sync code blocks event loop
+WebSocket scale: Redis pub/sub
+Background jobs: Celery

@@ -1,0 +1,111 @@
+What is WebSocket?
+WebSocket = Full-duplex persistent connection over TCP
+➡️ Real-time communication between client & server
+➡️ No repeated HTTP requests
+
+Use cases
+Chat apps
+Video calls signaling
+Live dashboards
+Multiplayer games
+Stock updates
+
+
+Important
+👉 WebSocket is Application layer protocol
+👉 Runs on TCP (Layer 4)
+
+---------------------------------------------------------
+| OSI Layer        | Role in WebSocket                  |
+| ---------------- | ---------------------------------- |
+| 7️⃣ Application  | WebSocket protocol (ws://, wss://) |
+| 6️⃣ Presentation | JSON, Protobuf encoding            |
+| 5️⃣ Session      | Persistent connection state        |
+| 4️⃣ Transport    | TCP (reliable delivery)            |
+| 3️⃣ Network      | IP routing                         |
+| 2️⃣ Data Link    | Ethernet/WiFi                      |
+| 1️⃣ Physical     | Hardware                           |
+
+
+
+⬅️In request:
+GET /chat HTTP/1.1
+Host: example.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: abc123
+Sec-WebSocket-Version: 13
+
+➡️In response:
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: xyz456
+
+✅ After this → HTTP closes
+✅ WebSocket starts
+
+WebSocket Frame (Message) Format
+
+| FIN | Opcode | Mask | Payload Length | Payload Data |
+
+| Field   | Meaning        |
+| ------- | -------------- |
+| FIN     | Final frame    |
+| Opcode  | Text / Binary  |
+| Mask    | Client masking |
+| Payload | Actual data    |
+
+| Opcode | Type        |
+| ------ | ----------- |
+| 0x1    | Text (JSON) |
+| 0x2    | Binary      |
+| 0x8    | Close       |
+| 0x9    | Ping        |
+| 0xA    | Pong        |
+
+
+❌ Common Problems
+1. Idle timeout  --> ❌ Load balancer kills connection --> ✅ Fix: ping/pong
+2. No sticky sessions --> ❌ Messages lost --> ✅ Fix: session affinity
+3. Memory leaks --> ✅ Too many open sockets
+4. Mobile network drops --> ✅Handle reconnect logic
+
+
+Code Example(Python): 
+```
+from fastapi import FastAPI, WebSocket
+
+app = FastAPI()
+
+@app.websocket("/ws")
+async def ws_endpoint(ws: WebSocket):
+    await ws.accept()
+    while True:
+        data = await ws.receive_text()
+        await ws.send_text(f"Echo: {data}")
+```
+
+🔁 Backpressure handling
+
+👉 Mechanism to prevent sender overwhelming receiver by slowing data flow when buffers fill.
+
+📦 Binary streaming
+
+👉 Sending raw binary data (video, audio, files) instead of text for higher performance and lower latency.
+
+🚀 WebTransport (future)
+
+👉 Next-gen real-time web protocol over QUIC supporting unreliable + multiplexed streams (successor to WebSocket/WebRTC data).
+
+⚡ QUIC vs WebSocket
+
+👉 QUIC = transport protocol (UDP-based), while WebSocket = application protocol over TCP.
+
+🧵 Multiplexing
+
+👉 Sending multiple logical streams over one connection without opening multiple sockets.
+
+🧩 Sharding connections
+
+👉 Distributing users across multiple servers to scale and avoid connection limits.

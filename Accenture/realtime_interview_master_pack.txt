@@ -1,0 +1,75 @@
+✅WebSocket: Persistent full-duplex TCP connection for real-time apps.
+✅WebRTC: Peer-to-peer real-time audio/video/data using UDP. 
+✅SSE: Server to client real-time stream over HTTP. 
+✅Polling: Client repeatedly asks server for updates.
+✅TCP: Reliable ordered delivery (used by WebSocket). 
+✅UDP: Fast but unreliable (used by WebRTC media). 
+✅QUIC: Modern UDP-based transport with built-in TLS and multiplexing.
+✅Signaling server: Helps peers exchange connection metadata. 
+✅STUN: Finds public IP behind NAT. 
+✅TURN: Relays media when P2P fails. 
+✅ICE: Chooses best connection path (STUN/TURN).
+✅Sticky sessions: Same user routed to same server. 
+✅Pub/Sub: Broadcast messages across servers. 
+✅Sharding: Split users across clusters. 
+✅Load balancing: Distribute connections evenly.
+✅Heartbeat: Ping/pong to detect dead clients. 
+✅Backpressure: Control send rate to avoid overload. 
+✅Reconnect logic: Auto rejoin after disconnect.
+✅Codec: Compress audio/video (VP8, H264, Opus). 
+✅Bitrate: Data rate of media stream.
+✅Jitter buffer: Smooth network fluctuations. 
+✅SRTP: Encrypted RTP for secure media.
+
+  --------------------
+  SENIOR CHEAT SHEET
+  --------------------
+
+✅WebSocket: Use for chat, notifications, dashboards. 
+✅Stack: App → WebSocket → TCP → IP 
+✅Scaling: Load balancer → WS servers → Redis pub/sub → DB Challenges: Sticky sessions, memory, idle timeouts, scaling
+
+✅WebRTC: Use for video calls, voice chat, screen sharing. ✅Stack: Media →
+SRTP → UDP → ICE → STUN/TURN Architectures: Mesh, SFU, MCU Challenges:
+NAT traversal, TURN cost, adaptive bitrate
+
+  ---------------
+  REAL EXAMPLES
+  ---------------
+
+WebSocket: Stock trading dashboards. WebRTC: Google Meet calls. STUN:
+Discover public IP before joining call. TURN: Corporate firewall relay.
+ICE: Direct → STUN → TURN fallback. Multiplexing: HTTP/3 multiple
+streams. Backpressure: Slow mobile network throttling. Binary streaming:
+Gaming/video frames. QUIC: YouTube HTTP/3. Sharding: WhatsApp regional
+clusters.
+
+  ---------------------------
+  DIAGRAM NOTES (TEXT FORM)
+  ---------------------------
+
+WebSocket Scaling: Clients → Load balancer → WS servers → Redis →
+Database
+
+WebRTC Flow: User A ↔ Signaling ↔ User B ICE/STUN negotiation Direct P2P
+(TURN fallback)
+
+SFU Architecture: Multiple users → SFU server → forwarded media to all
+
+  -----------------------------
+  SENIOR INTERVIEW ONE-LINERS
+  -----------------------------
+
+WebSocket is TCP full duplex; WebRTC uses UDP for low latency. WebRTC
+complexity lies in ICE and NAT traversal. Redis pub/sub enables
+horizontal WebSocket scaling. SFU scales better than mesh beyond small
+rooms. TURN is costly but required in strict networks. QUIC avoids TCP
+head-of-line blocking.
+
+  --------------------
+  30-SECOND REVISION
+  --------------------
+
+WebSocket = real-time data WebRTC = real-time media STUN = public IP
+discovery TURN = relay server ICE = connection negotiation SFU =
+scalable video routing QUIC = future transport
